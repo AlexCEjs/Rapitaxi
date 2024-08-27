@@ -1,0 +1,210 @@
+<h2>LISTA DE MULTAS</h2>
+<body>
+    <section class="tabla">
+        <div class="container mt-5 px-2">
+            <div class="mb-2 d-flex justify-content-between align-items-center">
+              <div class="position-relative">
+                <span class="position-absolute search"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input class="form-control w-100" placeholder="Buscar nombre.." />
+                <button class="button-bus" role="button">
+                  <i class="fa-solid fa-plus"></i><span class="ms-1"></span>Buscar
+                </button>
+              </div>
+      
+              <div class="px-2">
+                <button
+                  type="button"
+                  class="button-tb btn-peach-gradient"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-plus"></i><span class="ms-1"></span>
+                  Nuevo
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-responsive table-borderless">
+                <thead>
+                  <tr class="bg-light">
+                    <th scope="col" width="10%">#</th>
+                    <th scope="col" width="10%">Usuario</th>
+                    <th scope="col" width="20%">Fecha</th>
+                    <th scope="col" width="20%">Descripcion</th>
+                    <th scope="col" width="10%">Valor</th>
+                    <th scope="col" width="20%">Estado</th>
+                    <th scope="col" class="text-end" width="20%">
+                      <span>Acciones</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of multas">
+                    <td>{{ data.id }}</td>
+                    <td>
+                      <img src="https://i.imgur.com/VKOeFyS.png" width="25" /><span class="ms-1"></span>{{ data.nombre_usuario }}
+                    </td>
+                    <td>{{ data.fecha_multa | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{ data.descripcion }}</td>
+                    <td>
+                      <i class="fa-light fa-dollar-sign"></i><span class="ms-1">{{ data.valor }}</span>
+                    </td>
+                    <td>
+                      <i class="fa fa-check-circle-o green"></i
+                      ><i class="fa fa-dot-circle-o text-danger"></i
+                      ><span class="ms-1"></span>{{ data.estado }}
+                    </td>
+                    <td class="text-end">
+                      <button 
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal2"
+                      data-bs-whatever="@getbootstrap" 
+                      class="button-edit" (click)="abrirEditarModal(data)">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button class="button-delete" (click)="eliminarMulta(data.id)">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+              </div>
+              <div *ngIf="successMessage" class="success-message">
+                {{ successMessage }}
+              </div>
+            </div>
+          </div>
+          <!--INSERT MODAL-->
+          <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p class="card-title text-center shadow mb-5 rounded" id="exampleModalLabel">REGISTRAR MULTA</p>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="registration-form"(ngSubmit)="registro()">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Socio:</label>
+                    <select class="browser-default custom-select mb-4" [(ngModel)]="idusuario" name="idusuario" required>
+                      <option value="" disabled="" selected="">Seleccionar..</option>
+                      <option *ngFor="let socio of usuarios" [value]="socio.id">{{ socio.nombre }}</option>
+                  </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Fecha:</label>
+                    <input type="date" class="form-control" [(ngModel)]="fecha_multa" name="fecha_multa" required>
+                    <!--<textarea class="form-control" id="message-text"></textarea>-->
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Descripcion:</label>
+                    <input type="text" class="form-control" [(ngModel)]="descripcion" name="descripcion" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Valor:</label>
+                    <input type="number" class="form-control" [(ngModel)]="valor" name="valor" required>
+                    <!--<input type="text" class="form-control" id="recipient-name" />-->
+                  </div>
+                  <label for="recipient-name" class="col-form-label">Estado:</label>
+                    <select class="browser-default custom-select mb-4" [(ngModel)]="estado" name="estado" required>
+                      <option value="" disabled="" selected="">Seleccionar..</option>
+                      <option value="Pendiente">Pendiente</option>
+                      <option value="Cancelado">Cancelado</option>
+                  </select>
+                  <div *ngIf="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                  </div>
+                  <div *ngIf="successMessage" class="success-message">
+                    {{ successMessage }}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                  </div>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+        
+        <!--EDIT MODAL-->
+        <div
+          class="modal fade"
+          id="exampleModal2"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p class="card-title text-center shadow mb-5 rounded" id="exampleModalLabel">ACTUALIZAR MULTA</p>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="registration-form">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Socio:</label>
+                    <select class="browser-default custom-select mb-4" [(ngModel)]="multaSeleccionado.idusuario" name="idusuario" required>
+                      <option value="" disabled="" selected="">Seleccionar..</option>
+                      <option *ngFor="let socio of usuarios" [value]="socio.id">{{ socio.nombre }}</option>
+                  </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="fecha_multa" class="col-form-label">Fecha:</label>
+                    <input type="date" class="form-control" id="fecha_multa" [(ngModel)]="multaSeleccionado.fecha_multa" name="fecha_multa" required>
+                    <!--<textarea class="form-control" id="message-text"></textarea>-->
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Descripcion:</label>
+                    <input type="text" class="form-control" [(ngModel)]="multaSeleccionado.descripcion" name="descripcion" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Valor:</label>
+                    <input type="number" class="form-control" [(ngModel)]="multaSeleccionado.valor" name="valor" required>
+                    <!--<input type="text" class="form-control" id="recipient-name" />-->
+                  </div>
+                  <label for="recipient-name" class="col-form-label">Estado:</label>
+                    <select class="browser-default custom-select mb-4" [(ngModel)]="multaSeleccionado.estado" name="estado" required>
+                      <option value="" disabled="" selected="">Seleccionar..</option>
+                      <option value="Pendiente">Pendiente</option>
+                      <option value="Cancelado">Cancelado</option>
+                  </select>
+                  <div *ngIf="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                  </div>
+                  <div *ngIf="successMessage" class="success-message">
+                    {{ successMessage }}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarAgregarModal()">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" (click)="editarMulta()">Aceptar</button>
+                  </div>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </section>
+</body>

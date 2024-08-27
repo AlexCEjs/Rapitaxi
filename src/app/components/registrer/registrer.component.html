@@ -1,0 +1,55 @@
+<body>
+  <section id="principal">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6 mx-auto py-4 px-0">
+              <div class="card p-0">
+                  <div class="card-title text-center">
+                      <h5 class="mt-5">Registro</h5> <small class="para">Complete los campos correctamente.</small>
+                  </div>
+                  <form class="registration-form" (ngSubmit)="registro()">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Apellido" [(ngModel)]="apellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Direccion" [(ngModel)]="direccion" name="direccion" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Telefono" [(ngModel)]="telefono" name="telefono" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" placeholder="Correo Electrónico" [(ngModel)]="correo" name="correo" required>
+                    </div>
+                      <div class="form-group"><div class="input-group">
+                        <input type="{{ verPassword ? 'text' : 'password' }}" class="form-control" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+                        <span class="input-group-addon" (click)="togglePasswordVisibility()">
+                          <i class="fa-solid fa-eye" *ngIf="!verPassword"></i>
+                          <i class="fa-solid fa-eye-slash" *ngIf="verPassword"></i>
+                        </span>
+                      </div>
+                    </div>
+                      <button type="submit" class="submit-btn btn-primary">Registrar</button>
+                      <div class="row">
+                          <div class="col-6 col-sm-6">
+                             <a [routerLink]="['/home']"><p class="text-right pt-2 mr-1">Volver al inicio</p></a>
+                          </div>
+                      </div>
+                      <div *ngIf="errorMessage" class="error-message">
+                        {{ errorMessage }}
+                      </div>
+                      <div *ngIf="successMessage" class="success-message">
+                        {{ successMessage }}
+                      </div>
+                      <div class="row"><span></span>
+                          <div class="d-flex mx-auto pt-1 pb-3"> <a href="https://www.facebook.com/?locale=es_LA"><i class="fab fa-facebook"></i></a> <a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a> <a href="#"><i class="fab fa-linkedin"></i></a> </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section>
+</body>

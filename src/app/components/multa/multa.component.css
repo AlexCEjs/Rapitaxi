@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+*{
+    font-family: "Montserrat", sans-serif;
+    
+}
+.container{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.search{
+  
+  top:6px;
+  left:10px;
+}
+
+.form-control{
+    
+    border:none;
+    padding-left:32px;
+}
+
+.form-control:focus{
+    
+    border:none;
+    box-shadow:none;
+}
+
+.green{
+    
+    color:green;
+}
+
+.tabla{
+  background-color: rgba(250, 235, 215, 0.212);
+}
+
+.button-tb {
+    background-color: #e3e651;
+    border-radius: 100px;
+    box-shadow: rgba(173, 187, 44, 0.2) 0 -25px 18px -14px inset,rgba(173, 187, 44, 0.15) 0 1px 2px,rgba(187, 185, 44, 0.15) 0 2px 4px,rgba(187, 185, 44, 0.15) 0 4px 8px,rgba(187, 185, 44, 0.15) 0 8px 16px,rgba(187, 185, 44, 0.15) 0 16px 32px;
+    color: rgb(126, 128, 0);
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-tb:hover {
+    box-shadow: rgba(177, 187, 44, 0.35) 0 -25px 18px -14px inset,rgba(187, 185, 44, 0.25) 0 1px 2px,rgba(177, 187, 44, 0.25) 0 2px 4px,rgba(187, 185, 44, 0.25) 0 4px 8px,rgba(187, 185, 44, 0.25) 0 8px 16px,rgba(177, 187, 44, 0.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+  .button-edit {
+    background-color: #51a3e6;
+    border-radius: 100px;
+    box-shadow: rgba(44, 130, 187, 0.2) 0 -25px 18px -14px inset,rgba(44, 123, 187, 0.15) 0 1px 2px,rgba(44, 111, 187, 0.15) 0 2px 4px,rgba(44, 106, 187, 0.15) 0 4px 8px,rgba(44, 123, 187, 0.15) 0 8px 16px,rgba(44, 118, 187, 0.15) 0 16px 32px;
+    color: rgb(0, 81, 128);
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-edit:hover {
+    box-shadow: rgba(44, 118, 187, 0.35) 0 -25px 18px -14px inset,rgba(44, 130, 187, 0.25) 0 1px 2px,rgba(44, 134, 187, 0.25) 0 2px 4px,rgba(44, 106, 187, 0.25) 0 4px 8px,rgba(44, 118, 187, 0.25) 0 8px 16px,rgba(44, 130, 187, 0.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+  .button-delete {
+    background-color: #e65151;
+    border-radius: 100px;
+    box-shadow: rgba(187, 44, 44, 0.2) 0 -25px 18px -14px inset,rgba(187, 44, 44, 0.15) 0 1px 2px,rgba(187, 44, 44, 0.15) 0 2px 4px,rgba(187, 44, 44, 0.15) 0 4px 8px,rgba(187, 44, 44, 0.15) 0 8px 16px,rgba(187, 44, 44, 0.15) 0 16px 32px;
+    color: rgb(128, 0, 0);
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-delete:hover {
+    box-shadow: rgba(187, 44, 44, 0.35) 0 -25px 18px -14px inset,rgba(187, 44, 44, 0.25) 0 1px 2px,rgba(187, 44, 44, 0.25) 0 2px 4px,rgba(187, 44, 44, 0.25) 0 4px 8px,rgba(187, 44, 44, 0.25) 0 8px 16px,rgba(187, 44, 44, 0.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+  .button-bus {
+    background-color: #fafaf6;
+    border-radius: 100px;
+    box-shadow: rgba(93, 94, 92, 0.2) 0 -25px 18px -14px inset,rgba(76, 77, 75, 0.15) 0 1px 2px,rgba(73, 73, 72, 0.15) 0 2px 4px,rgba(99, 99, 97, 0.15) 0 4px 8px,rgba(59, 59, 58, 0.15) 8px 16px,rgba(59, 59, 58, 0.15) 0 16px 32px;
+    color: rgb(58, 58, 56);
+    cursor: pointer;
+    display: inline-block;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  .button-bus:hover {
+    box-shadow: rgba(85, 85, 84, 0.35) 0 -25px 18px -14px inset,rgba(54, 54, 53, 0.25) 0 1px 2px,rgba(100, 100, 98, 0.25) 0 2px 4px,rgba(185, 185, 179, 0.25) 0 4px 8px,rgba(78, 78, 76, 0.25) 0 8px 16px,rgba(63, 63, 61, 0.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+  /*FORMULARIO MODAL*/
+
+  .card-title{
+    margin:auto;
+    padding:15px;
+    background-color: #2f7fad;
+    color: white;
+    width:80%;
+  }
+  
+  
+  .custom-select{
+    width:100%;
+  }
+  
+  .btn2{
+    margin-left:10%;
+  }
+  input {
+    outline: 0!important;
+    border-width: 0 0 2px!important;
+    border-color: #080808!important;
+  }
+  
+  select{
+  
+   outline: 0!important;
+    border-width: 0 0 2px!important;
+    border-color: #d1d1cf!important;
+  }
+  
+  select:focus{
+      border-color: #d1d1cf!important;
+   -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+  }

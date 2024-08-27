@@ -1,0 +1,117 @@
+<body>
+  <h2>ASIGNACION DE UNIDADES</h2>
+      <div class="container">
+        <div class="card mx-auto">
+            <div class="px-2">
+                <button
+                  type="button"
+                  class="button-tb btn-peach-gradient"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  data-bs-whatever="@getbootstrap"><i class="fa-solid fa-plus"><span class="ms-1"></span></i>Nueva Unidad
+                </button>
+              </div>
+        <div class="card-body" *ngFor="let user of taxis">
+            <div class="logo mb-3"><img src="https://firebasestorage.googleapis.com/v0/b/web-program-c2a2f.appspot.com/o/img%2Fparada.ico?alt=media&token=3df599bd-2e5b-4de4-af2f-24bb2cef4291&_gl=1*14zktji*_ga*NDc4NTMyNzQ3LjE2OTQ5MjIyNDQ.*_ga_CW55HF8NVT*MTY5NTk1NzQ1NS4yMi4xLjE2OTU5NTc0NTcuNTguMC4w"/></div>
+          <h3 class="card-title-list"> <strong>Chofer:</strong> {{ user.nombre_usuario }}</h3>
+          <h6 class="card-subtitle mb-2 text-muted">Viaje seguro</h6>
+          <div class="row rone mt-4">
+                <div class="col-md-6">
+                    <p class="text-muted"><i class="far fa-check-circle"></i><strong>Modelo:</strong> {{ user.modelo }}</p>
+                    <p class="text-muted"><i class="far fa-check-circle"></i><strong>Placa:</strong> {{ user.placa }}</p>
+                    <p class="text-muted"><i class="far fa-check-circle"></i><strong>Marca:</strong> {{ user.marca }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-muted"><i class="far fa-check-circle"></i><strong>Año:</strong> {{ user.anio }}</p>
+                    <p class="text-muted"><i class="far fa-check-circle"></i><strong>Color:</strong> {{ user.color }}</p>
+                    <p class="text-muted"><i class="far fa-check-circle"></i><strong>Estado:</strong> {{ user.estado }}</p>
+                </div>
+          </div>             
+           <button type="button" class="button-tb btn-primary btn-lg btn-block mt-3" [routerLink]="['/turno-unidad']"><span>Asignar</span></button>        
+        </div>
+    </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="card-title text-center shadow mb-5 rounded" id="exampleModalLabel">REGISTRAR UNIDAD</p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="registration-form">
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Modelo:</label>
+                <input type="text" class="form-control" [(ngModel)]="modelo" name="modelo" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Placa:</label>
+                <input type="text" class="form-control" [(ngModel)]="placa" name="placa" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Marca:</label>
+                <input type="text" class="form-control" [(ngModel)]="marca" name="marca" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"># Motor:</label>
+                <input type="text" class="form-control" [(ngModel)]="num_motor" name="num_motor" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"># Chasis:</label>
+                <input type="text" class="form-control" [(ngModel)]="num_chasis" name="num_chasis" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Año:</label>
+                <input type="text" class="form-control" [(ngModel)]="anio" name="anio" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Cilindraje:</label>
+                <input type="number" class="form-control" [(ngModel)]="cilindraje" name="cilindraje" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Color:</label>
+                <input type="text" class="form-control" [(ngModel)]="color" name="color" required>
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Socio:</label>
+                <select class="browser-default custom-select mb-4" [(ngModel)]="id_usuario" name="id_usuario" required>
+                    <option value="" disabled="" selected="">Seleccionar..</option>
+                    <option *ngFor="let socio of usuarios" [value]="socio.id">{{ socio.nombre }}</option>
+              </select>
+              </div>
+              <label for="recipient-name" class="col-form-label">Estado:</label>
+                <select class="browser-default custom-select mb-4" [(ngModel)]="estado" name="estado" required>
+                  <option value="" disabled="" selected="">Seleccionar..</option>
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+              </select>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+              </div>
+              <div *ngIf="successMessage" class="success-message">
+                {{ successMessage }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" (click)="registro()">Aceptar</button>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</body>
+
+	

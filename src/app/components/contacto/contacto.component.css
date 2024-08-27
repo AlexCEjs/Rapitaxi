@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*Edicion del texto "Gracias"*/
+
+.div-h1 {
+    width: 98%;
+    /* Ancho de la figura*/
+    padding: 10px;
+    /* Espaciado interno */
+    text-align: center;
+    /* alineado de texto */
+    margin: 20px 0;
+    /* margen de texto */
+    border-radius: 10px;
+    /* Borde de la figura */
+    /* fuente de texto */
+    background-color: #FFD93D;
+    /* Color de la figura */
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+    /* Medidas y color de la sombra de la figura*/
+}
+
+.container {
+    display: flex;
+    /*Permite colocar dos texto junto al otro*/
+    color: rgb(2, 2, 2);
+    /* Color de texto */
+}
+
+
+/*Edicion del texto "Escribenos"*/
+
+.div-h2 {
+    margin: 10px 200px;
+    /* margen de texto */
+}
+
+
+/*Edicion del texto "Siguenos"*/
+
+.div-h2-S {
+    margin: 10px 0px;
+    /* margen de texto */
+}
+
+
+/*Edicion del texto "ventanas"*/
+
+.div-h2-P {
+    margin: 10px 230px;
+    /* margen de texto */
+}
+
+
+/*Edicion del formulario*/
+
+.div-h3 {
+    /*Espaciado interno*/
+    color: #0a0a0a;
+    /*Color del texto*/
+    margin: 0 200px;
+    /* margen de texto */
+}
+
+input {
+    width: 300px;
+    /*Ancho del casillero*/
+    height: 30px;
+    /*Altura del casillero*/
+    background-color: white;
+    /*Color del casillero*/
+    outline: none;
+    /*Color del contorno*/
+}
+
+#btnEnviar {
+    background-color: black;
+    /* Color de fondo */
+    color: white;
+    /* Color de texto */
+    padding: 10px 20px;
+    /*Espaciado interno*/
+    border-radius: 15px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor tipo mano al pasar por encima */
+    font-size: 16px;
+    /* Tamaño de fuente */
+    transition: background-color 0.3s;
+    /* Transición suave del color de fondo */
+    margin: 20px 220px;
+    /* margen de texto */
+}

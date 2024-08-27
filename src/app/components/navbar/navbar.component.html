@@ -1,0 +1,43 @@
+<body>
+  <header>
+    <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/web-program-c2a2f.appspot.com/o/img%2Fparada.ico?alt=media&token=3df599bd-2e5b-4de4-af2f-24bb2cef4291" alt="Rapitaxi">
+    <nav>
+      <ul class="nav__link">
+        <li class="listas">
+          <i class="fa-solid fa-house" *ngIf="!usuarioService.estaAutenticado()"></i>
+          <a [routerLink]="['home']" href="">Inicio</a>
+        </li>
+        <li class="listas" *ngIf="usuarioService.estaAutenticado()">
+          <i class="fa-solid fa-taxi"></i>
+          <a [routerLink]="['unidades']" href="">Unidades</a>
+        </li>
+        <li class="listas" *ngIf="usuarioService.estaAutenticado()">
+          <i class="fa-solid fa-users"></i>
+          <a [routerLink]="['usuarios']" href="">Usuarios</a>
+        </li>
+        <li class="listas" *ngIf="usuarioService.estaAutenticado()">
+          <i class="fa-solid fa-list"></i>
+          <a [routerLink]="['turnos']" href="">Turnos</a>
+        </li>
+        <li class="listas" *ngIf="usuarioService.estaAutenticado()">
+          <i class="fa-solid fa-house"></i>
+          <a [routerLink]="['cobro']" href="">Cobros</a>
+        </li>
+        <li class="listas" *ngIf="usuarioService.estaAutenticado()">
+          <i class="fa-solid fa-taxi"></i>
+          <a [routerLink]="['turno-unidad']" href="">Viajes</a>
+        </li>
+        <li class="listas" *ngIf="!usuarioService.estaAutenticado()">
+          <i class="fa-solid fa-headset"></i>
+          <a [routerLink]="['contacto']" href="">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+    <a class="bot">
+      <button type="submit" [routerLink]="['login']" *ngIf="!usuarioService.estaAutenticado()">Login</button>
+      <button type="submit" *ngIf="usuarioService.estaAutenticado()" (click)="cerrarSesion()">Cerrar Sesión</button>
+      <button type="submit" [routerLink]="['registrer']" *ngIf="!usuarioService.estaAutenticado()">Registro</button>
+    </a>
+  </header>
+   
+</body>

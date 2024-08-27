@@ -1,0 +1,189 @@
+<body>
+  <h2>LISTA DE TURNOS</h2>
+  <section class="tabla">
+    <div class="container mt-5 px-2">
+      <div class="mb-2 d-flex justify-content-between align-items-center">
+        <div class="position-relative">
+          <span class="position-absolute search"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></span>
+          <input class="form-control w-100" placeholder="Buscar nombre.." />
+          <button class="button-bus" role="button">
+            <i class="fa-solid fa-plus"></i>Buscar
+          </button>
+        </div>
+
+        <div class="px-2">
+          <button
+            type="button"
+            class="button-tb btn-peach-gradient"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@getbootstrap"><i class="fa-solid fa-plus"><span class="ms-1"></span></i>Nuevo
+          </button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-responsive table-borderless">
+          <thead>
+            <tr class="bg-light">
+              <th scope="col" width="10%">#</th>
+              <th scope="col" width="20%">Descripcion</th>
+              <th scope="col" width="10%">Hora Ini.</th>
+              <th scope="col" width="20%">Hora Fin.</th>
+              <th scope="col" width="15%">Estado</th>
+              <th scope="col" class="text-end" width="10%">
+                <span>Acciones</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of turnos">
+              <td>{{ data.id }}</td>
+              <td><i class="fa-solid fa-location-dot"></i><span class="ms-1">{{ data.descripcion }}</span></td>
+              <td><i class="fa-regular fa-clock"></i><span class="ms-1"></span>{{ data.hora_inicio }}</td>
+              <td><i class="fa-regular fa-clock"></i><span class="ms-1"></span>{{ data.hora_final }}</td>
+              <td>
+                <i *ngIf="data.estado === 'Completado'" class="fa fa-check-circle-o green"></i>
+                      <i *ngIf="data.estado === 'Pendiente'" class="fa fa-dot-circle-o text-danger"></i>
+                      <span class="ms-1">{{data.estado}}</span>
+              </td>
+              <td class="text-end">
+                <button type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+                data-bs-whatever="@getbootstrap" class="button-edit" (click)="abrirEditarModal(data)">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="button-delete" (click)="eliminarTurno(data.id)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+      </div>
+    </div>
+
+    <!--FORMULARIO MODAL-->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="card-title text-center shadow mb-5 rounded" id="exampleModalLabel">REGISTRAR TURNO</p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close" (click)="cerrarAgregarModal()"></button>
+          </div>
+          <div class="modal-body">
+            <form class="registration-form">
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Descripcion:</label>
+                <input type="text" class="form-control" [(ngModel)]="descripcion" name="descripcion" required>
+              </div>
+              <div class="mb-3">
+                <label for="hora" class="col-form-label">Hora Inicial:</label>
+                <input type="time" class="form-control" [(ngModel)]="hora_inicio" name="hora_inicio" required>
+                <!--<textarea class="form-control" id="message-text"></textarea>-->
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Hora Final:</label>
+                <input type="time" class="form-control" [(ngModel)]="hora_final" name="hora_final" required>
+                <!--<textarea class="form-control" id="message-text"></textarea>-->
+              </div>
+              <label for="recipient-name" class="col-form-label">Estado:</label>
+                <select class="browser-default custom-select mb-4" [(ngModel)]="estado" name="estado" required>
+                  <option value="" disabled="" selected="">Seleccionar..</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Completado">Completado</option>
+              </select>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+              </div>
+              <div *ngIf="successMessage" class="success-message">
+                {{ successMessage }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarAgregarModal()">Cerrar</button>
+                <button type="submit" class="btn btn-primary" (click)="registro()">Aceptar</button>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario Modal para Editar -->
+    <div
+      class="modal fade"
+      id="exampleModal2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      [ngClass]="{'d-block': mostrarEditarModal}">
+      
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="card-title text-center shadow mb-5 rounded" id="exampleModalLabel">EDITAR TURNO</p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close" (click)="cerrarAgregarModal()"></button>
+          </div>
+          <div class="modal-body">
+            <form class="registration-form">
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Descripcion:</label>
+                <input type="text" class="form-control" [(ngModel)]="turnoSeleccionado.descripcion" name="descripcion" required>
+              </div>
+              <div class="mb-3">
+                <label for="hora" class="col-form-label">Hora Inicial:</label>
+                <input type="time" class="form-control" id="hora_inicio" [(ngModel)]="turnoSeleccionado.hora_inicio" name="hora_inicio" required>
+                <!--<textarea class="form-control" id="message-text"></textarea>-->
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Hora Final:</label>
+                <input type="time" class="form-control" id="hora_final" [(ngModel)]="turnoSeleccionado.hora_final" name="hora_final" required>
+                <!--<textarea class="form-control" id="message-text"></textarea>-->
+              </div>
+              <label for="recipient-name" class="col-form-label">Estado:</label>
+                <select class="browser-default custom-select mb-4" id="estado" [(ngModel)]="turnoSeleccionado.estado" name="estado" required>
+                  <option value="" disabled="" selected="">Seleccionar..</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Completado">Completado</option>
+              </select>
+              <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+              </div>
+              <div *ngIf="successMessage" class="success-message">
+                {{ successMessage }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarAgregarModal()">Cerrar</button>
+                <button type="submit" class="btn btn-primary" (click)="editarTurno()">Aceptar</button>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</section>
+</body>
